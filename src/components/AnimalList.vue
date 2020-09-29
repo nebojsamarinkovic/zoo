@@ -1,0 +1,49 @@
+<template>
+  <div class="hello">
+    <table>
+      <caption>Zivotinje u Zoo vrtu</caption>
+      <tr>
+        <th>Vrsta Zivotinje</th>
+        <th>Ime</th>
+        <th>Datum Rodjenja</th>
+      </tr>
+      <tr v-for="(zivotinja, index) in listaZivotinja" :key="index">
+        <td>{{zivotinja.type}}</td>
+        <td>{{zivotinja.name}}</td>
+        <td>{{zivotinja.dateOfBirth.toLocaleString()}}</td>
+      </tr>
+    </table>
+    
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'AnimalList',
+  data () {
+    return {
+    listaZivotinja : [
+      {name: "Vuk", type: "Divlja", dateOfBirth: new Date(2012, 0, 13)},
+      {name: "Magarac", type: "Domaca", dateOfBirth: new Date(2008, 6, 23)},
+      {name: "Soko", type: "Ptica", dateOfBirth: new Date(2016, 2, 2)},
+      {name: "Zmija", type: "Gmizavac", dateOfBirth: new Date(2017, 1, 1)},
+      {name: "Pirana", type: "Riba", dateOfBirth: new Date(2016, 9, 21)}, 
+    ]
+    }
+  }
+}
+</script>
+
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped>
+
+table, th, td {
+  border : 1px solid black;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 10px;
+}
+
+</style>

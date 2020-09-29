@@ -1,5 +1,14 @@
 <template>
   <div class="hello">
+    <form action="" @submit.prevent="addAnimal()">
+      <label for="name">Ime:</label>
+      <input type="text" name="name" v-model="name">
+      <label for="type">Vrsta:</label>
+      <input type="text" name="type" v-model="type">
+      <label for="dateOfBirth">Datum rodjenja:</label>
+      <input type="date" name="dateOfBirth" v-model="dateOfBirth">
+      <input type="submit" value="Add Animal">
+    </form>
     <table>
       <caption>Zivotinje u Zoo vrtu</caption>
       <tr>
@@ -34,7 +43,10 @@ export default {
       {name: "Zmija", type: "Gmizavac", dateOfBirth: new Date(2017, 1, 1)},
       {name: "Pirana", type: "Riba", dateOfBirth: new Date(2016, 9, 21)},
       {name: "Muva", type: "Insekt",   }, 
-    ]
+    ],
+    name: '',
+    type: '',
+    dateOfBirth: null
     }
   },
 
@@ -45,8 +57,21 @@ export default {
     },
 
     moveToTop(index, zivotinja){
-      this.listaZivotinja.splice(index, 1);
+      this.listaZivotinja.splice(index, 1); 
       this.listaZivotinja.unshift(zivotinja);
+    },
+
+    addAnimal(){
+      var newAnimal = {
+        name: this.name,
+        type: this.type,
+        dateOfBirth: this.dateOfBirth
+      }
+
+      this.listaZivotinja.push(newAnimal);
+      this.name = '';
+      this.type = '';
+      this.dateOfBirth = null;
     }
   }
 }
@@ -62,6 +87,11 @@ table, th, td {
 
 th, td {
   padding: 10px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
 }
 
 </style>

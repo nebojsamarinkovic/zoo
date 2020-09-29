@@ -5,6 +5,9 @@
       <input type="text" name="name" v-model="name">
       <label for="type">Vrsta:</label>
       <input type="text" name="type" v-model="type">
+      <select v-model="sektor">
+        <option v-for="(sektor, index) in sektori" :key="index" >{{sektor}}</option>
+      </select>
       <label for="dateOfBirth">Datum rodjenja:</label>
       <input type="date" name="dateOfBirth" v-model="dateOfBirth">
       <input type="submit" value="Add Animal">
@@ -14,6 +17,7 @@
       <tr>
         <th></th>
         <th></th>
+        <th>Sektor</th>
         <th>Vrsta Zivotinje</th>
         <th>Ime</th>
         <th>Datum Rodjenja</th>
@@ -21,10 +25,12 @@
       <tr v-for="(zivotinja, index) in listaZivotinja" :key="index">
         <th><button @click="moveToTop(index, zivotinja)">Move to top</button></th>
         <td><button @click="removeAnimal(index)">Remove</button></td>
+        <td>{{zivotinja.sektor}}</td>
         <td>{{zivotinja.type}}</td>
         <td>{{zivotinja.name}}</td>
         <td v-if="zivotinja.dateOfBirth">{{zivotinja.dateOfBirth.toLocaleString()}}</td>
         <td v-else>Nepoznato</td>
+        
       </tr>
     </table>
     
@@ -37,7 +43,7 @@ export default {
   data () {
     return {
     listaZivotinja : [
-      {name: "Vuk", type: "Divlja", dateOfBirth: new Date(2012, 0, 13)},
+      {name: "Vuk", type: "Divlja", dateOfBirth: new Date(2012, 0, 13),},
       {name: "Magarac", type: "Domaca", dateOfBirth: new Date(2008, 6, 23)},
       {name: "Soko", type: "Ptica", dateOfBirth: new Date(2016, 2, 2)},
       {name: "Zmija", type: "Gmizavac", dateOfBirth: new Date(2017, 1, 1)},
@@ -46,7 +52,9 @@ export default {
     ],
     name: '',
     type: '',
-    dateOfBirth: null
+    dateOfBirth: null,
+    sektori: ["ptice", "zmije", "kopitari", "ribe"],
+    sektor: ''
     }
   },
 
@@ -65,13 +73,15 @@ export default {
       var newAnimal = {
         name: this.name,
         type: this.type,
-        dateOfBirth: this.dateOfBirth
+        dateOfBirth: this.dateOfBirth,
+        sektor: this.sektor
       }
 
       this.listaZivotinja.push(newAnimal);
       this.name = '';
       this.type = '';
       this.dateOfBirth = null;
+      this.sektor = '';
     }
   }
 }

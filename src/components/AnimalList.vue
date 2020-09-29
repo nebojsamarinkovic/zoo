@@ -5,7 +5,7 @@
       <input type="text" name="name" v-model="name">
       <label for="type">Vrsta:</label>
       <input type="text" name="type" v-model="type">
-      <select v-model="sektor">
+      <select v-model="izabraniSektor">
         <option v-for="(sektor, index) in sektori" :key="index" >{{sektor}}</option>
       </select>
       <label for="dateOfBirth">Datum rodjenja:</label>
@@ -54,7 +54,7 @@ export default {
     type: '',
     dateOfBirth: null,
     sektori: ["ptice", "zmije", "kopitari", "ribe"],
-    sektor: ''
+    izabraniSektor: ''
     }
   },
 
@@ -74,14 +74,14 @@ export default {
         name: this.name,
         type: this.type,
         dateOfBirth: this.dateOfBirth,
-        sektor: this.sektor
+        sektor: this.izabraniSektor
       }
 
       this.listaZivotinja.push(newAnimal);
       this.name = '';
       this.type = '';
       this.dateOfBirth = null;
-      this.sektor = '';
+      this.izabraniSektor = '';
     }
   }
 }

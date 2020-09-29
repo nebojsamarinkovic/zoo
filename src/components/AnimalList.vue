@@ -10,7 +10,8 @@
       <tr v-for="(zivotinja, index) in listaZivotinja" :key="index">
         <td>{{zivotinja.type}}</td>
         <td>{{zivotinja.name}}</td>
-        <td>{{zivotinja.dateOfBirth.toLocaleString()}}</td>
+        <td v-if="zivotinja.dateOfBirth">{{zivotinja.dateOfBirth.toLocaleString()}}</td>
+        <td v-else>Nepoznato</td>
       </tr>
     </table>
     
@@ -27,7 +28,8 @@ export default {
       {name: "Magarac", type: "Domaca", dateOfBirth: new Date(2008, 6, 23)},
       {name: "Soko", type: "Ptica", dateOfBirth: new Date(2016, 2, 2)},
       {name: "Zmija", type: "Gmizavac", dateOfBirth: new Date(2017, 1, 1)},
-      {name: "Pirana", type: "Riba", dateOfBirth: new Date(2016, 9, 21)}, 
+      {name: "Pirana", type: "Riba", dateOfBirth: new Date(2016, 9, 21)},
+      {name: "Muva", type: "Insekt",   }, 
     ]
     }
   }

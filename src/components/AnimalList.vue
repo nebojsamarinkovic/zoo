@@ -3,11 +3,13 @@
     <table>
       <caption>Zivotinje u Zoo vrtu</caption>
       <tr>
+        <th></th>
         <th>Vrsta Zivotinje</th>
         <th>Ime</th>
         <th>Datum Rodjenja</th>
       </tr>
       <tr v-for="(zivotinja, index) in listaZivotinja" :key="index">
+        <td><button @click="removeAnimal(index)">Remove</button></td>
         <td>{{zivotinja.type}}</td>
         <td>{{zivotinja.name}}</td>
         <td v-if="zivotinja.dateOfBirth">{{zivotinja.dateOfBirth.toLocaleString()}}</td>
@@ -31,6 +33,13 @@ export default {
       {name: "Pirana", type: "Riba", dateOfBirth: new Date(2016, 9, 21)},
       {name: "Muva", type: "Insekt",   }, 
     ]
+    }
+  },
+
+  methods: {
+    removeAnimal(index){
+      this.listaZivotinja.splice(index, 1);
+      console.log("tu sam");
     }
   }
 }

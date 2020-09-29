@@ -4,11 +4,13 @@
       <caption>Zivotinje u Zoo vrtu</caption>
       <tr>
         <th></th>
+        <th></th>
         <th>Vrsta Zivotinje</th>
         <th>Ime</th>
         <th>Datum Rodjenja</th>
       </tr>
       <tr v-for="(zivotinja, index) in listaZivotinja" :key="index">
+        <th><button @click="moveToTop(index, zivotinja)">Move to top</button></th>
         <td><button @click="removeAnimal(index)">Remove</button></td>
         <td>{{zivotinja.type}}</td>
         <td>{{zivotinja.name}}</td>
@@ -40,6 +42,11 @@ export default {
     removeAnimal(index){
       this.listaZivotinja.splice(index, 1);
       console.log("tu sam");
+    },
+
+    moveToTop(index, zivotinja){
+      this.listaZivotinja.splice(index, 1);
+      this.listaZivotinja.unshift(zivotinja);
     }
   }
 }
